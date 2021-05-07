@@ -26,12 +26,12 @@ class MemcachePool
     {
         if ($this->container->get($name) instanceof Pool) {
             throw new PoolException(
-                sprintf("memcache pool:%s is already been register", $name)
+                sprintf("memcache pool[%s] is already been register", $name)
             );
         }
 
         $pool = new Pool($config);
-        $this->container[$name] = $pool;
+        $this->container->set($name, $pool);
         return $pool->getConfig();
     }
 
